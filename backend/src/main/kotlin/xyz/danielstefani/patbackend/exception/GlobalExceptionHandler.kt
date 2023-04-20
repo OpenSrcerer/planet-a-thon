@@ -10,9 +10,25 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import java.util.*
 
 
+/**
+ * A class dedicated to global exception handling.
+ *
+ * Exceptions are situation in which the server cannot recover, and therefore will
+ * return an erroneous response.
+ */
 @ControllerAdvice
 class GlobalExceptionHandler {
 
+    // If any exception is thrown in a controller, these methods will be called
+    // depending on the type of exception.
+
+
+    /**
+     * Handler for the generic "Exception" class.
+     * @param ex The exception that was thrown.
+     * @param webRequest The web request that threw the exception.
+     * @return A JSON object which describes the error.
+     */
     @ExceptionHandler(Exception::class)
     fun handleUncaughtException(
         ex: Exception,
@@ -23,6 +39,9 @@ class GlobalExceptionHandler {
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(mapOf(Pair("error", ex.message ?: "Oops, that wasn't supposed to happen.")))
     }
+
+    // There is nothing special about the functions below,
+    // all they do is treat other types of errors in a similar way.
 
     @ExceptionHandler(GenericHttpException::class)
     fun handleGenericHttpException(

@@ -8,6 +8,13 @@ import jakarta.persistence.Table
 import xyz.danielstefani.patbackend.dto.CartoonDto
 import java.util.*
 
+
+/**
+ * This is an example of how to create a "model".
+ * A model is a Java class which shows the structure of the table in the database.
+ *
+ * You can create instances of these objects, and each one represents one row in the database.
+ */
 @Entity
 @Table(
     name = "cartoons",

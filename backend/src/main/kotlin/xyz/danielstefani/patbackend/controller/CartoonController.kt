@@ -27,7 +27,7 @@ import java.util.*
 @RestController // The @RestController annotation marks the class as a controller with built-in JSON response handling.
 @RequestMapping("/cartoons") // The @RequestMapping("/cartoons") specifies the base URL for the controller.
 class CartoonController(
-    private val cartoonService: CartoonService
+    private val cartoonService: CartoonService // Dependency injected cartoon service
 ) {
     /**
      * getCartoons() handles a GET request for retrieving all cartoons.
@@ -42,6 +42,7 @@ class CartoonController(
     /**
      * getCartoon() handles a GET request for retrieving a single cartoon by its UUID.
      * @param uuid It takes a UUID path variable.
+     * @return A single cartoon if found, or an HTTP 404 status otherwise.
      */
     @GetMapping("/{uuid}")
     fun getCartoon(
@@ -51,6 +52,11 @@ class CartoonController(
             .orElseThrow { CartoonNotFoundException() }
     }
 
+    /**
+     * createCartoon() handles a POST request for creating a new cartoon.
+     * @param cartoonDto It takes a CartoonDto request body
+     * @returns A ResponseEntity with the created Cartoon object and a Created (201) status code.
+     */
     @PostMapping
     fun createCartoon(
         @RequestBody cartoonDto: CartoonDto
@@ -59,6 +65,11 @@ class CartoonController(
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCartoon)
     }
 
+    /**
+     * updateCartoon() handles a PATCH request for partially updating an existing cartoon.
+     * @param partialCartoonDto It takes a PartialCartoonDto request body.
+     * @returns The updated Cartoon object. If the id field is null, it throws a custom GenericHttpException with a BAD_REQUEST status code.
+     */
     @PatchMapping
     fun updateCartoon(
         @RequestBody partialCartoonDto: PartialCartoonDto
@@ -69,6 +80,11 @@ class CartoonController(
         return cartoonService.patchCartoon(partialCartoonDto)
     }
 
+    /**
+     * deleteCartoon() handles a DELETE request for deleting a single cartoon by its UUID.
+     * @param uuid It takes a UUID path variable.
+     * @returns A ResponseEntity with a NO_CONTENT status code.
+     */
     @DeleteMapping("/{uuid}")
     fun deleteCartoon(
         @PathVariable uuid: UUID
