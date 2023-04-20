@@ -1,0 +1,35 @@
+version: "3.8"
+
+networks:
+  planet-a-thon-net:
+    driver: bridge
+
+volumes:
+  planet-a-thon-db-data:
+
+services:
+  planet-a-thon-db:
+    container_name: planet-a-thon-db
+    image: postgres:15.2-bullseye
+    hostname: planet-a-thon-db
+    networks:
+      - planet-a-thon-net
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
+  planet-a-thon-backend:
+    container_name: planet-a-thon-backend
+    build: .
+    hostname: planet-a-thon-backend
+    networks:
+      - planet-a-thon-net
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
