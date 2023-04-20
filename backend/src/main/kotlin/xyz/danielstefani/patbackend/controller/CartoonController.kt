@@ -55,7 +55,7 @@ class CartoonController(
     /**
      * createCartoon() handles a POST request for creating a new cartoon.
      * @param cartoonDto It takes a CartoonDto request body
-     * @returns A ResponseEntity with the created Cartoon object and a Created (201) status code.
+     * @return A ResponseEntity with the created Cartoon object and a Created (201) status code.
      */
     @PostMapping
     fun createCartoon(
@@ -68,7 +68,8 @@ class CartoonController(
     /**
      * updateCartoon() handles a PATCH request for partially updating an existing cartoon.
      * @param partialCartoonDto It takes a PartialCartoonDto request body.
-     * @returns The updated Cartoon object. If the id field is null, it throws a custom GenericHttpException with a BAD_REQUEST status code.
+     * @return The updated Cartoon object. If the id field is null,
+     * it throws a custom GenericHttpException with a BAD_REQUEST status code.
      */
     @PatchMapping
     fun updateCartoon(
@@ -83,7 +84,7 @@ class CartoonController(
     /**
      * deleteCartoon() handles a DELETE request for deleting a single cartoon by its UUID.
      * @param uuid It takes a UUID path variable.
-     * @returns A ResponseEntity with a NO_CONTENT status code.
+     * @return A ResponseEntity with a NO_CONTENT status code.
      */
     @DeleteMapping("/{uuid}")
     fun deleteCartoon(
