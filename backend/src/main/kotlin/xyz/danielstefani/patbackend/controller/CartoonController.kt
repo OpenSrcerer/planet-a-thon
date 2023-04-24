@@ -34,7 +34,7 @@ class CartoonController(
      * @param pageable A Pageable parameter, which is a Spring Data interface for pagination and sorting.
      * @return A Page of Cartoon objects.
      */
-    @GetMapping
+    @GetMapping("", "/")
     fun getCartoons(pageable: Pageable): Page<Cartoon> {
         return cartoonService.getCartoons(pageable)
     }
@@ -44,7 +44,7 @@ class CartoonController(
      * @param uuid It takes a UUID path variable.
      * @return A single cartoon if found, or an HTTP 404 status otherwise.
      */
-    @GetMapping("/{uuid}")
+    @GetMapping("/{uuid}", "/{uuid}/")
     fun getCartoon(
         @PathVariable uuid: UUID
     ): Cartoon {
@@ -57,7 +57,7 @@ class CartoonController(
      * @param cartoonDto It takes a CartoonDto request body
      * @return A ResponseEntity with the created Cartoon object and a Created (201) status code.
      */
-    @PostMapping
+    @PostMapping("", "/")
     fun createCartoon(
         @RequestBody cartoonDto: CartoonDto
     ): ResponseEntity<Cartoon> {
@@ -71,7 +71,7 @@ class CartoonController(
      * @return The updated Cartoon object. If the id field is null,
      * it throws a custom GenericHttpException with a BAD_REQUEST status code.
      */
-    @PatchMapping
+    @PatchMapping("", "/")
     fun updateCartoon(
         @RequestBody partialCartoonDto: PartialCartoonDto
     ): Cartoon {
@@ -86,7 +86,7 @@ class CartoonController(
      * @param uuid It takes a UUID path variable.
      * @return A ResponseEntity with a NO_CONTENT status code.
      */
-    @DeleteMapping("/{uuid}")
+    @DeleteMapping("/{uuid}", "/{uuid}/")
     fun deleteCartoon(
         @PathVariable uuid: UUID
     ): ResponseEntity<Void> {
