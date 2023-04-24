@@ -3,6 +3,7 @@ package xyz.danielstefani.patmobile
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -10,33 +11,49 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import xyz.danielstefani.patmobile.client.cartoon.CartoonHttpClient
-import xyz.danielstefani.patmobile.ui.theme.PatmobileTheme
+import androidx.navigation.*
+import androidx.navigation.compose.ComposeNavigator
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import xyz.danielstefani.patmobile.ui.theme.PatMobileTheme
+import xyz.danielstefani.patmobile.ui.views.HomeView
 
 class MainActivity : ComponentActivity() {
+
+    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PatmobileTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                    CartoonHttpClient.getAllCartoons().subscribe()
+            PatMobileTheme {
+                val navController = rememberNavController()
+                val startDestination = "home"
+
+                NavHost(navController, startDestination) {
+                    composable("home") {
+                        HomeView(navController)
+                    }
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    PatmobileTheme {
-        Greeting("Android")
+    // Extension function to make Navigation Graphs for composables
+    private fun NavGraphBuilder.composable(
+        route: String,
+        arguments: List<NamedNavArgument> = emptyList(),
+        deepLinks: List<NavDeepLink> = emptyList(),
+        content: @Composable (NavBackStackEntry) -> Unit
+    ) {
+        addDestination(
+            ComposeNavigator.Destination(provider[ComposeNavigator::class], content).apply {
+                this.route = route
+                arguments.forEach { (argumentName, argument) ->
+                    addArgument(argumentName, argument)
+                }
+                deepLinks.forEach { deepLink ->
+                    addDeepLink(deepLink)
+                }
+            }
+        )
     }
 }
