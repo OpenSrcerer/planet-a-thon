@@ -25,12 +25,11 @@ The Cartoon REST API supports CRUD (Create, Read, Update, Delete) operations on 
 The API also includes basic security features such as API key authentication for requests, security configuration, and custom exception handling to provide helpful error messages for clients.
 
 ## Getting Started
-
 To get started with the project, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Open the project in your favourite IDE.
-3. Build the project to download the required dependencies.
+3. Import the Gradle project to download the required dependencies.
 4. Run the `PatBackendApplication.kt` class to start the Spring Boot application.
 
 Once the application is running, you can test the API endpoints using a tool such as Postman or cURL.
