@@ -1,4 +1,4 @@
 package xyz.danielstefani.patmobile.util
 
-// Like Stateable, but with nullable types
+// Like Ref, but with nullable types
 class NullableRef<T>(t: T?) : Ref<T?>(t)
