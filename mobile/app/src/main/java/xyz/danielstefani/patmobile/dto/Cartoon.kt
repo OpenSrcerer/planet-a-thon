@@ -2,7 +2,7 @@ package xyz.danielstefani.patmobile.dto
 
 import java.util.*
 
-class Cartoon {
+class Cartoon : java.io.Serializable {
     var id: UUID? = null                 // Unique ID of the character
     var name: String? = null             // Name of the cartoon character
     var age: Int? = null                 // Age of the cartoon character

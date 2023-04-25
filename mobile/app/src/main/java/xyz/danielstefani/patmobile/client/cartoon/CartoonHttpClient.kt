@@ -2,12 +2,13 @@ package xyz.danielstefani.patmobile.client.cartoon
 
 import androidx.annotation.CheckResult
 import com.fasterxml.jackson.databind.ObjectMapper
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import reactor.core.publisher.Mono
 import xyz.danielstefani.patmobile.client.HttpCallback
 import xyz.danielstefani.patmobile.client.HttpEndpoint
+import xyz.danielstefani.patmobile.dto.Cartoon
 import xyz.danielstefani.patmobile.dto.CartoonPage
 import java.util.concurrent.TimeUnit
 
@@ -21,19 +22,28 @@ object CartoonHttpClient {
 
     @CheckResult
     fun getAllCartoons(): Mono<CartoonPage> {
-        return makeHttpRequestAsync(CartoonHttpEndpoint.GET_ALL_CARTOONS)
+        return makeHttpRequestAsync<Cartoon>(CartoonHttpEndpoint.GET_ALL_CARTOONS)
             .map { objectMapper.readValue(it, CartoonPage::class.java) }
     }
 
-    private fun makeHttpRequestAsync(
-        cartoonHttpEndpoint: CartoonHttpEndpoint
+    private fun <T : java.io.Serializable> makeHttpRequestAsync(
+        cartoonHttpEndpoint: CartoonHttpEndpoint,
+        body: T? = null
     ): Mono<String> {
         return Mono.create { sink ->
             client.newCall(
-                Request.Builder()
-                    .url(getCartoonsHttpUrl(cartoonHttpEndpoint))
-                    .header("PlanetAThonKey", "rememberme")
-                    .build()
+                with(
+                    Request.Builder()
+                        .url(getCartoonsHttpUrl(cartoonHttpEndpoint))
+                        .header("PlanetAThonKey", "rememberme")
+                ) {
+                    if (body != null) {
+                        method(cartoonHttpEndpoint.method,
+                            objectMapper.writeValueAsString(body).toRequestBody("application/json".toMediaType()))
+                    } else {
+                        method(cartoonHttpEndpoint.method, null)
+                    }
+                }.build()
             ).enqueue(HttpCallback(sink))
         }
     }
