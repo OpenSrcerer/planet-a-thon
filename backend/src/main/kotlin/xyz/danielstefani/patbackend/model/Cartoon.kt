@@ -54,7 +54,7 @@ class Cartoon(cartoonDto: CartoonDto?) {
             this.name = cartoonDto.name
             this.age = cartoonDto.age
             this.gender = cartoonDto.gender
-            this.show = cartoonDto.gender
+            this.show = cartoonDto.show
             this.description = cartoonDto.description
             this.color = cartoonDto.color
             this.likes = cartoonDto.likes
