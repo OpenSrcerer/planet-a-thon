@@ -31,7 +31,6 @@ fun HomeView(
     ArtistList(controller, model)
 }
 
-
 @ExperimentalFoundationApi
 @Composable
 fun ArtistList(
