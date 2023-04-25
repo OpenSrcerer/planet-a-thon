@@ -4,18 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.*
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import xyz.danielstefani.patmobile.ui.theme.PatMobileTheme
+import xyz.danielstefani.patmobile.ui.views.CartoonView
 import xyz.danielstefani.patmobile.ui.views.HomeView
 
 class MainActivity : ComponentActivity() {
@@ -25,12 +20,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PatMobileTheme {
-                val navController = rememberNavController()
+                val controller = rememberNavController()
                 val startDestination = "home"
 
-                NavHost(navController, startDestination) {
+                NavHost(controller, startDestination) {
                     composable("home") {
-                        HomeView(navController)
+                        HomeView(controller)
+                    }
+
+                    composable("cartoon") {
+                        CartoonView(controller)
                     }
                 }
             }

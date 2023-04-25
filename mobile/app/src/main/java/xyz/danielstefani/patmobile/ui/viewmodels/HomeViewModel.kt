@@ -13,7 +13,7 @@ class HomeViewModel : ViewModel() {
         getCartoons()
     }
 
-    fun getCartoons() {
+    private fun getCartoons() {
         CartoonHttpClient.getAllCartoons()
             .subscribe {
                 val newCartoons = mutableMapOf<Char, MutableList<Cartoon>>()
@@ -35,11 +35,12 @@ class HomeViewModel : ViewModel() {
     }
 
     companion object {
-        private var browseModel: HomeViewModel? = null
+        private var homeViewModel: HomeViewModel? = null
 
         fun get(): HomeViewModel {
-            if (browseModel == null) browseModel = HomeViewModel()
-            return browseModel!!
+            if (homeViewModel == null)
+                homeViewModel = HomeViewModel()
+            return homeViewModel!!
         }
     }
 }

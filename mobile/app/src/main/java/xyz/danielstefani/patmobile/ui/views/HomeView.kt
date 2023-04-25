@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import xyz.danielstefani.patmobile.dto.Cartoon
 import xyz.danielstefani.patmobile.ui.theme.Purple40
 import xyz.danielstefani.patmobile.ui.theme.PurpleGrey80
+import xyz.danielstefani.patmobile.ui.viewmodels.CartoonViewModel
 import xyz.danielstefani.patmobile.ui.viewmodels.HomeViewModel
 
 @ExperimentalFoundationApi
@@ -27,13 +28,14 @@ fun HomeView(
     controller: NavController,
     model: HomeViewModel = HomeViewModel.get()
 ) {
-    ArtistList(model)
+    ArtistList(controller, model)
 }
 
 
 @ExperimentalFoundationApi
 @Composable
 fun ArtistList(
+    controller: NavController,
     model: HomeViewModel
 ) {
     LazyColumn {
@@ -43,7 +45,7 @@ fun ArtistList(
             }
 
             items(entry.value) { toon ->
-                ListedCartoonStyle(model, toon)
+                ListedCartoonStyle(controller, model, toon)
             }
         }
     }
@@ -70,12 +72,16 @@ fun StickyHeaderStyle(
 
 @Composable
 fun ListedCartoonStyle(
+    controller: NavController,
     model: HomeViewModel,
     toon: Cartoon
 ) {
     Row(
         modifier = Modifier
-            .clickable {  }
+            .clickable {
+                CartoonViewModel.get().setCartoon(toon)
+                controller.navigate("cartoon")
+            }
             .background(PurpleGrey80)
             .padding(start = 15.dp, top = 15.dp, bottom = 15.dp)
             .fillMaxWidth()
