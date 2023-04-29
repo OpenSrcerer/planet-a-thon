@@ -1,0 +1,30 @@
+curl --location 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons?size=0&page=0' \
+--header 'PlanetAThonKey: rememberme'
+
+curl --location --request GET 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons/e26e242f-055c-4746-8dc9-9785b6f4f6ef' \
+--header 'PlanetAThonKey: rememberme'
+
+curl --location 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons' \
+--header 'PlanetAThonKey: rememberme' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Pink Panther",
+    "age": 22,
+    "gender": "Male",
+    "show": "The Pink Panther",
+    "description": "A wonderful panther.",
+    "color": "Patchouli Pink",
+    "likes": 100010
+}'
+
+curl --location --request PATCH 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons' \
+--header 'PlanetAThonKey: rememberme' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "6da7c45b-1ebe-450f-867f-f4d566e31fff",
+    "color": "Blazing Hot Pink",
+    "likes": 29102
+}'
+
+curl --location --request DELETE 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons/8067783c-b811-4482-926a-510a9770a55d' \
+--header 'PlanetAThonKey: rememberme'
