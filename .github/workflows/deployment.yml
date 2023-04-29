@@ -7,7 +7,7 @@ on:
 name: planet-a-thon-deployment
 
 jobs:
-  devflow:
+  deploy-on-okteto:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -21,7 +21,7 @@ jobs:
       - name: "Activate Namespace"
         uses: okteto/namespace@latest
         with:
-          name: planet-a-thon
+          namespace: planet-a-thon
 
       - name: "Trigger the pipeline"
         uses: okteto/pipeline@latest
