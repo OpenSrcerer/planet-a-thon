@@ -26,7 +26,7 @@ jobs:
       - name: "Trigger the pipeline"
         uses: okteto/pipeline@latest
         with:
-          name: pr-${{ github.event.number }}
+          name: planet-a-thon-deployment
           timeout: 8m
           skipIfExists: true
           filename: backend/docker-compose.yml
