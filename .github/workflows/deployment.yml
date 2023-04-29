@@ -29,3 +29,4 @@ jobs:
           name: pr-${{ github.event.number }}
           timeout: 8m
           skipIfExists: true
+          filename: backend/docker-compose.yml
