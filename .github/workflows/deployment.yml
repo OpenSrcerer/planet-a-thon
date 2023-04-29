@@ -21,7 +21,7 @@ jobs:
       - name: "Activate Namespace"
         uses: okteto/namespace@latest
         with:
-          namespace: planet-a-thon
+          namespace: opensrcerer
 
       - name: "Trigger the pipeline"
         uses: okteto/pipeline@latest
