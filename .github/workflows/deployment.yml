@@ -28,5 +28,5 @@ jobs:
         with:
           name: planet-a-thon-deployment
           timeout: 8m
-          skipIfExists: true
+          skipIfExists: false
           filename: backend/docker-compose.yml
