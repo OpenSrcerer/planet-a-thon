@@ -29,11 +29,6 @@ import java.util.*
 class CartoonController(
     private val cartoonService: CartoonService // Dependency injected cartoon service
 ) {
-    @GetMapping("/test")
-    fun testController(): String {
-        return "Hello world!"
-    }
-
     /**
      * getCartoons() handles a GET request for retrieving all cartoons.
      * @param pageable A Pageable parameter, which is a Spring Data interface for pagination and sorting.
