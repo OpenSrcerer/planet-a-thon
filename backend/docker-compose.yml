@@ -1,35 +1,42 @@
 version: "3.8"
 
+# Define a network named planet-a-thon-net using the bridge driver.
+# The bridge driver connects all docker containers together.
 networks:
   planet-a-thon-net:
     driver: bridge
 
+# Define a volume named planet-a-thon-db-data.
 volumes:
   planet-a-thon-db-data:
 
+# Define the services to be used in the application.
 services:
-  planet-a-thon-db:
-    container_name: planet-a-thon-db
-    image: postgres:15.2-bullseye
-    hostname: planet-a-thon-db
-    networks:
-      - planet-a-thon-net
-    expose:
-      - 5432
-    ports:
-      - "5432:5432"
-    env_file:
-      - .env
 
-  planet-a-thon-backend:
-    container_name: planet-a-thon-backend
-    build: .
-    hostname: planet-a-thon-backend
+  # Define the planet-a-thon-db service.
+  planet-a-thon-db:
+    container_name: planet-a-thon-db  # Set the container name to planet-a-thon-db.
+    image: postgres:15.2-bullseye  # Use the Postgres 15.2-bullseye image.
+    hostname: planet-a-thon-db  # Set the hostname to planet-a-thon-db.
     networks:
-      - planet-a-thon-net
+      - planet-a-thon-net  # Connect the service to the planet-a-thon-net network.
     expose:
-      - 8080
+      - 5432  # Expose port 5432 to the network.
     ports:
-      - "8080:8080"
+      - "5432:5432"  # Bind port 5432 of the container to port 5432 on the host.
     env_file:
-      - .env
+      - .env  # Use the environment variables defined in the .env file.
+
+  # Define the planet-a-thon-backend service.
+  planet-a-thon-backend:
+    container_name: planet-a-thon-backend  # Set the container name to planet-a-thon-backend.
+    build: .  # Build the image using the Dockerfile in the current directory.
+    hostname: planet-a-thon-backend  # Set the hostname to planet-a-thon-backend.
+    networks:
+      - planet-a-thon-net  # Connect the service to the planet-a-thon-net network.
+    expose:
+      - 8080  # Expose port 8080 to the network.
+    ports:
+      - "8080:8080"  # Bind port 8080 of the container to port 8080 on the host.
+    env_file:
+      - .env  # Use the environment variables defined in the .env file.
