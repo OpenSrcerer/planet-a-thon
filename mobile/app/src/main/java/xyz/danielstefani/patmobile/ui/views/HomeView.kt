@@ -28,12 +28,12 @@ fun HomeView(
     controller: NavController,
     model: HomeViewModel = HomeViewModel.get()
 ) {
-    ArtistList(controller, model)
+    CartoonList(controller, model)
 }
 
 @ExperimentalFoundationApi
 @Composable
-fun ArtistList(
+fun CartoonList(
     controller: NavController,
     model: HomeViewModel
 ) {
