@@ -1,6 +1,6 @@
 # ---- BUILD ----
 # Use the Amazon gradle:7.6.1-jdk17 image as the base image for the build stage.
-FROM amazoncorretto:17-alpine as BUILD
+FROM gradle:8.1.1-jdk-jammy as BUILD
 
 # Set the working directory to /app.
 WORKDIR /app
