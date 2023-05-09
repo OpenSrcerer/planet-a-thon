@@ -1,6 +1,6 @@
 # ---- BUILD ----
-# Use the Amazon Corretto 17-alpine image as the base image for the build stage.
-FROM amazoncorretto:17-alpine as BUILD
+# Use the Amazon gradle:7.6.1-jdk17 image as the base image for the build stage.
+FROM gradle:7.6.1-jdk17 as BUILD
 
 # Set the working directory to /app.
 WORKDIR /app
@@ -15,8 +15,8 @@ ENV APP_LOGGING_LEVEL DEBUG
 RUN ./gradlew build
 
 # ---- RUN ----
-# Use the Amazon Corretto 17-alpine image as the base image for the run stage.
-FROM amazoncorretto:17-alpine as RUN
+# Use the Amazon gradle:7.6.1-jdk17 image as the base image for the run stage.
+FROM gradle:7.6.1-jdk17 as RUN
 
 # Set the JAR_FILE argument to the location of the built JAR file.
 ARG JAR_FILE=build/libs/patbackend-1.0.0.jar
