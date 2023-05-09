@@ -1,6 +1,6 @@
 # ---- BUILD ----
 # Use the Amazon gradle:7.6.1-jdk17 image as the base image for the build stage.
-FROM gradle:7.6.1-jdk17 as BUILD
+FROM amazoncorretto:17-alpine as BUILD
 
 # Set the working directory to /app.
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY . .
 ENV APP_LOGGING_LEVEL DEBUG
 
 # Build the project using Gradle.
-RUN gradle build
+RUN ./gradlew build
 
 # ---- RUN ----
 # Use the Amazon gradle:7.6.1-jdk17 image as the base image for the run stage.
