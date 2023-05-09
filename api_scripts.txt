@@ -1,5 +1,4 @@
-curl --location 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons?size=0&page=0' \
---header 'PlanetAThonKey: rememberme'
+curl --location 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons?size=0&page=0' --header 'PlanetAThonKey: rememberme'
 
 curl --location --request GET 'https://planet-a-thon-backend-opensrcerer.cloud.okteto.net/api/v1/cartoons/e26e242f-055c-4746-8dc9-9785b6f4f6ef' --header 'PlanetAThonKey: rememberme'
 
