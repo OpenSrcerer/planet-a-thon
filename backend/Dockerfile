@@ -16,7 +16,7 @@ RUN ./gradlew build
 
 # ---- RUN ----
 # Use the Amazon gradle:7.6.1-jdk17 image as the base image for the run stage.
-FROM gradle:7.6.1-jdk17 as RUN
+FROM amazoncorretto:17-alpine as RUN
 
 # Set the JAR_FILE argument to the location of the built JAR file.
 ARG JAR_FILE=build/libs/patbackend-1.0.0.jar
