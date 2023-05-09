@@ -12,7 +12,7 @@ COPY . .
 ENV APP_LOGGING_LEVEL DEBUG
 
 # Build the project using Gradle.
-RUN ./gradlew build
+RUN gradle build
 
 # ---- RUN ----
 # Use the Amazon gradle:7.6.1-jdk17 image as the base image for the run stage.
