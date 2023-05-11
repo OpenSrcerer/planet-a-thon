@@ -12,7 +12,7 @@ COPY . .
 ENV APP_LOGGING_LEVEL DEBUG
 
 # Build the project using Gradle.
-RUN ./gradlew build
+RUN gradle build
 
 # ---- RUN ----
 # Use the amazoncorretto:17-alpine image as the base image for the run stage.
