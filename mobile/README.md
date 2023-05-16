@@ -21,6 +21,6 @@ To get started with the project, follow these steps:
 0. Make sure the backend is running, or that you are using a remote deployment!
 1. Clone the repository to your local machine.
 2. Open the project in Android Studio.
-3. Create an emulator, `Pixel 5, API 30, Android 11`
+3. Create an emulator, `Pixel 2, API 30, Android 11`
 4. Build the project to download the required dependencies.
 5. Run the Android app through the `MainActivity` class to launch it on the device.
