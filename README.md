@@ -8,6 +8,16 @@
 
 As a parallel developer and student, I believe that the academic world and software development industry don't see eye-to-eye on many aspects. Hence, I created this repository and workshop as a safe space for my colleagues to experience the production world without compromises _(and without pressure!)_.
 
+## Customizable Features
+### Backend
+1. .env file -> `API_PASSWORD`
+2. Okteto deployment -> `deployment.yml`
+3. Okteto namespace
+4. `OKTETO_TOKEN`
+
+### Frontend
+1. HTTP Client Host
+
 ## Repository Content
 
 - **Assets:** Images necessary for this README.
