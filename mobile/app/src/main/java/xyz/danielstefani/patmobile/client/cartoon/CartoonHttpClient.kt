@@ -87,8 +87,8 @@ object CartoonHttpClient {
         // Build an HttpUrl object using HttpUrl.Builder to construct the URL for the Cartoon API.
         return HttpUrl.Builder()
             .scheme("http") // Set the URL scheme to HTTP.
-            .host("10.0.2.2") // Set the host to the server's address.
-            .port(8080) // Set the port for the server.
+            .host("planet-a-thon-backend-{YOURNAMESPACE}.cloud.okteto.net") // Set the host to the server's address.
+            .port(80) // Set the port for the server.
             .addPathSegments("api/v1") // Add the API base path to the URL.
             .addPathSegment(CartoonHttpEndpoint.CARTOON_BASE_PATH.location) // Add the cartoon base path to the URL.
             .addPathSegment(cartoonHttpEndpoint.location) // Add the endpoint location to the URL.
